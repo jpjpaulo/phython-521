@@ -1,0 +1,15 @@
+
+# base da imagem
+FROM ubuntu
+
+# construcao da imagem
+RUN apt update && apt install apache2 -y
+
+# copia da maquina fisica para o container
+COPY entrypoint.sh /usr/local/bin
+
+# processo que roda somente na inicializacaoa do container
+ENTRYPOINT [ "sh", "usr/local/bin/entrypoint.sh" ]
+
+# processo roda enquanto container estiver "vivo"
+CMD [ "/bin/bash" ]
